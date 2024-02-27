@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const cors = require('cors'); // Import cors middleware
 
 const app = express();
-const port = 8080;
+// const port = 8080;
 
 // MySQL connection
 // const connection = mysql.createConnection({
@@ -50,16 +50,7 @@ app.post('/submit', (req, res) => {
     });
 });
 
-app.get('/',(req,res)=>{
-    const query = `SELECT * FROM employeedb`;
-    connection.query(query, (err, result) => {
-        if (err) {
-            return res.status(500).send('Error fetching data');
-        }
-        return res.status(200).send(result);
-    })
-})
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+// });
