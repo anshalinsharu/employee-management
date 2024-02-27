@@ -32,7 +32,6 @@ function App() {
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
-    // For radio inputs, handle differently
     if (type === 'radio') {
       setValues({
         ...values,
@@ -56,7 +55,7 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      await axios.post('https://employee-management-backend-7o89.onrender.com/submit', values);
+      await axios.post('http://localhost:8080/submit', values);
       alert('Data submitted successfully');
     } catch (error) {
       console.error('Error submitting data:', error);
@@ -64,9 +63,13 @@ function App() {
     }
   };
 
-  const First = () => {
-    return (
-      <div className="flex justify-center items-center h-screen bg-gray-200">
+ 
+
+  
+  
+  return (
+    <>
+      {step === 1 && <div className="flex justify-center items-center h-screen bg-gray-200">
         <div className="bg-white p-8 rounded shadow-md w-96">
           <h2 className="text-2xl font-bold text-center text-blue-600 mb-4">Employee Details</h2>
           <div>
@@ -165,14 +168,8 @@ function App() {
           </div>
           <button onClick={handleNext} className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md">Next</button>
         </div>
-      </div>
-    );
-  };
-  
-  
-  const Second = () => {
-    return (
-      <div className="flex justify-center items-center h-screen bg-gray-200">
+      </div>}
+      {step === 2 && <div className="flex justify-center items-center h-screen bg-gray-200">
         <div className="bg-white p-8 rounded shadow-md w-96">
           <h2 className="text-2xl font-bold text-center text-blue-600 mb-4">Form Two</h2>
           <div>
@@ -187,15 +184,7 @@ function App() {
             <button onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md">Submit</button>
           </div>
         </div>
-      </div>
-    );
-  };
-  
-  
-  return (
-    <>
-      {step === 1 && <First />}
-      {step === 2 && <Second />}
+      </div>}
     </>
   );
   

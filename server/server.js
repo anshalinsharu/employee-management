@@ -1,22 +1,14 @@
 const express = require('express');
 const mysql = require('mysql2');
-const cors = require('cors'); // Import cors middleware
-
+const cors = require('cors'); 
 const app = express();
-// const port = 8080;
-
-// MySQL connection
-// const connection = mysql.createConnection({
-//     host: 'mysql-1e01fdda-anshalinsharu-549b.a.aivencloud.com',
-//     user: 'avnadmin',
-//     password: 'AVNS_N5lxsXZu9l3KKMxHbvg',
-//     database: 'employee'
-// });
+app.use(express.json());
+app.use(cors());
 
 
-const connection=mysql.createConnection(`mysql://avnadmin:AVNS_N5lxsXZu9l3KKMxHbvg@mysql-1e01fdda-anshalinsharu-549b.a.aivencloud.com:20374/defaultdb?ssl-mode=REQUIRED`);
+const connection=mysql.createConnection(`mysql://avnadmin:AVNS_N5lxsXZu9l3KKMxHbvg@mysql-1e01fdda-anshalinsharu-549b.a.aivencloud.com:20374/employee`);
 
-// Connect to MySQL
+
 connection.connect(err => {
     if (err) {
         console.error('Error connecting to MySQL: ', err);
@@ -25,17 +17,10 @@ connection.connect(err => {
     console.log('Connected to MySQL');
 });
 
-// Middleware to parse JSON bodies
-app.use(express.json());
 
-// Enable CORS
-app.use(cors());
-
-// Endpoint to handle form submission
 app.post('/submit', (req, res) => {
+    console.log(req.body)
     const { name, empid, department, dob, gender, designation, salary, address } = req.body;
-
-    // Insert data into MySQL
     const query = `INSERT INTO employeedb (name, empid, department, dob, gender, designation, salary,address) 
                  VALUES (?, ?, ?, ?, ?, ?, ?,?)`;
     connection.query(query, [name, empid, department, dob, gender, designation, salary,address], (err, result) => {
@@ -50,7 +35,4 @@ app.post('/submit', (req, res) => {
     });
 });
 
-
-// app.listen(port, () => {
-//     console.log(`Server is running on port ${port}`);
-// });
+app.listen(8080)
