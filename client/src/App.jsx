@@ -3,7 +3,7 @@ import axios from 'axios';
 import Validation from "./Validation.js";
 import "./App.css";
 
-// InputArea component
+
 function InputArea(props) {
   return (
       <input
@@ -191,7 +191,7 @@ function App() {
     );
   };
   
-  // Assuming you're rendering based on some state variable 'step'
+  
   return (
     <>
       {step === 1 && <First />}
