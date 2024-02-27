@@ -1,17 +1,20 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const cors = require('cors'); // Import cors middleware
 
 const app = express();
 const port = 8080;
 
 // MySQL connection
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root123',
-    database: 'employeemanagement'
-});
+// const connection = mysql.createConnection({
+//     host: 'mysql-1e01fdda-anshalinsharu-549b.a.aivencloud.com',
+//     user: 'avnadmin',
+//     password: 'AVNS_N5lxsXZu9l3KKMxHbvg',
+//     database: 'employee'
+// });
+
+
+const connection=mysql.createConnection(`mysql://avnadmin:AVNS_N5lxsXZu9l3KKMxHbvg@mysql-1e01fdda-anshalinsharu-549b.a.aivencloud.com:20374/defaultdb?ssl-mode=REQUIRED`);
 
 // Connect to MySQL
 connection.connect(err => {
