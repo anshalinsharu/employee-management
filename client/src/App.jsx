@@ -55,7 +55,7 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      await axios.post('http://localhost:8080/submit', values);
+      await axios.post('https://employee-management-backend-iuf7.onrender.com/submit', values);
       alert('Data submitted successfully');
     } catch (error) {
       console.error('Error submitting data:', error);
